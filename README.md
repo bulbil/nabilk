@@ -1,8 +1,7 @@
-# :squid: nabilk.com :squid:
+# 𓇽 nabilk.com 𓇽
 
-Personal site Jekyll theme. Single page with category filter and cards rendered from YAML.
+Personal site 11ty theme with tag filters and cards rendered from YAML. Migrated from Jekyll.
 
 ## License
 
 The theme is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-

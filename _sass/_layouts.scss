@@ -1,0 +1,277 @@
+/* くコ:彡 www.nabilk.com single page style 2019.11.24 くコ:彡  */
+
+// variables
+
+$bodytype: "Times New Roman Seven";
+$titletype: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans,
+  Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+$basesize: 18px;
+$cw: 480px;
+$ch: 275px;
+
+@mixin transition() {
+  transition: opacity 500ms ease-in;
+}
+
+// colors
+
+$bodycolor: #000;
+$c: cyan;
+$m: magenta;
+$y: yellow;
+$k: gray;
+
+// breakpoints
+
+$medium: 640px;
+$big: 960px;
+
+// typography
+
+body,
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  vertical-align: baseline;
+
+  overflow-x: hidden !important;
+}
+
+body p,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $bodytype, "Times New Roman", serif;
+  font-style: normal;
+  font-size: $basesize;
+  line-height: 1.6rem;
+  font-feature-settings: "kern", "onum", "liga";
+}
+
+ul {
+  list-style-type: circle;
+}
+
+// links
+
+a {
+  color: $bodycolor;
+  transition: color 350ms;
+}
+
+#blurb a.writes:hover,
+#writes a:hover {
+  color: $c;
+}
+
+#blurb a.talks:hover,
+#talks a:hover {
+  color: $m;
+}
+
+#blurb a.teaches:hover,
+#teaches a:hover {
+  color: $y;
+}
+
+#blurb a.codes:hover,
+#codes a:hover {
+  color: $k;
+}
+
+// layout
+
+body {
+  display: flex;
+  justify-content: flex-start;
+  align-content: stretch;
+  flex-flow: column;
+}
+
+section {
+  z-index: 7;
+  @media screen and (min-width: $medium) {
+    margin-top: 1.25em;
+  }
+  @media screen and (min-width: $big) {
+    margin-left: 2em;
+    padding-top: 1.75em;
+  }
+
+  &:first-of-type {
+    padding-top: 1.5em;
+    margin-left: unset;
+    margin-top: unset;
+
+    @media screen and (min-width: $medium) {
+      padding-top: 0;
+    }
+
+    @media screen and (min-width: $big) {
+      padding-top: 2em;
+      min-width: $cw;
+    }
+  }
+}
+
+// blurb container
+$b: 5px solid;
+
+#blurb {
+  z-index: 0;
+  background-color: rgba(0, 0, 0, 0);
+  width: $cw;
+  min-width: $cw;
+  height: $ch;
+  min-height: $ch;
+
+  border: $b rgba(0, 0, 0, 0);
+  border-bottom: none;
+
+  // text-align: justify;
+  transform: translate(-10%, 45%) rotate(90deg);
+  transition: border 250ms ease-in, transform 500ms ease-in;
+
+  &.bordered {
+    border: $b rgba(0, 0, 0, 1);
+    border-bottom: none;
+  }
+
+  @media screen and (min-width: $medium) {
+    margin: 1.25rem auto 1rem auto;
+    transform: unset;
+  }
+
+  @media screen and (min-width: $big) {
+    // position: fixed;
+  }
+
+  p {
+    padding: 2em 1.25em 2em 1.25em;
+    font-size: 1.53 * $basesize;
+    line-height: 2rem;
+    height: 96px;
+    z-index: 1;
+  }
+}
+
+// blurb d3 doodad
+
+svg {
+  display: block;
+  position: relative;
+  left: -1.25px;
+  bottom: -58px;
+  z-index: -1;
+  // border: $b rgba(0, 0, 0, 0);
+
+  width: $cw;
+
+  path {
+    fill: transparent;
+    mix-blend-mode: darken;
+    stroke-width: 5px;
+    padding: 0;
+    opacity: 0;
+  }
+
+  path#cyan {
+    stroke: darken($c, 5%);
+  }
+  path#magenta {
+    stroke: lighten($m, 10%);
+  }
+  path#yellow {
+    stroke: $y;
+  }
+}
+
+// cards
+
+section.tags {
+  margin: 0 1.25em;
+  @include transition();
+  margin-top: calc($cw/2 + $basesize);
+  @media screen and (min-width: $medium) {
+    max-width: 1.25 * $cw;
+    margin: 0 auto;
+  }
+}
+
+.tag-heading {
+  margin: 0;
+  width: 100%;
+
+  font-family: $titletype;
+  font-weight: bold;
+}
+
+.tag-heading,
+.card {
+  margin-left: 0.125 * $cw;
+}
+
+div:not(:first-child) > .tag-heading {
+  padding-top: 1.75rem;
+}
+
+.card {
+  z-index: 5;
+
+  @media screen and (min-width: $medium) {
+    min-width: $cw;
+  }
+
+  @include transition();
+
+  a {
+    text-decoration: none;
+    p {
+      margin-left: 1em;
+      text-indent: -1em;
+      border: 1px solid transparent;
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      transition: text-decoration-color 250ms ease-in-out;
+    }
+    &:hover p {
+      text-decoration-color: black;
+    }
+  }
+}
+
+// scroll to top arrow
+
+#scrolltotop {
+  position: fixed;
+  bottom: 1em;
+  left: calc(50% - 0.5em);
+  text-decoration: none;
+
+  display: none;
+  opacity: 0;
+
+  height: 1em;
+  width: 1em;
+  padding: 0.25em 0.25em 0.5em 0.25em;
+
+  z-index: 9;
+
+  outline: $b;
+  background-color: rgba(255, 255, 255, 0.8);
+  font-size: $basesize * 2;
+  font-weight: bold;
+  text-align: center;
+
+  @include transition();
+}
+
+.row.show,
+#scrolltotop.show {
+  opacity: 1;
+}

@@ -1,0 +1,4 @@
+<div class="card {{ a.tags | join: ' ' }}">
+    {% if a.url %}<a href="{{ a.url }}">{% endif %}{{ a.title | markdownify }}{% if a.url %}</a>{% endif %}
+    {% if a.desc and show_desc %}{{ a.desc | markdownify }}{% endif %}
+</div>

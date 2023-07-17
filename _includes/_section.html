@@ -1,0 +1,17 @@
+{% assign filteredActivities = activities | filterByTag: tags %}
+{% unless show_desc %}
+{% assign show_desc = false %}
+{% endunless %}
+
+{% assign tag_names = tags | split: ',' %}
+
+<div id="{{ tag_names[0] }}">
+  <h2 class="tag-heading">{{ tag_names[0] | upcase }}</h2>
+  {% for entry in filteredActivities | filterByTag: tags %}
+  {% for year in entry%}
+  {% for a in year[1] %}
+  {% include "_activity-card.html" %}
+  {% endfor %}
+  {% endfor %}
+  {% endfor %}
+</div>

@@ -1,0 +1,17 @@
+{
+  "name": "nabilk",
+  "version": "0.0.1",
+  "description": "Personal website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "@bulbil",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "js-yaml": "^4.1.0",
+    "path": "^0.12.7",
+    "sass": "^1.63.3"
+  }
+}
